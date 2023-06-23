@@ -6,6 +6,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "../cart/cartSlice";
 
 const user = {
   name: "Tom Cook",
@@ -28,6 +30,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar(props) {
+  const items = useSelector(selectCartItems);
   return (
     <>
       <div className="min-h-full">
@@ -68,21 +71,23 @@ export default function Navbar(props) {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                    <Link to={"/cart"}>
-                      <button
-                        type="button"
-                        className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                      >
-                        <span className="sr-only">View notifications</span>
-                        <ShoppingCartIcon
-                          className="h-6 w-6"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </Link>
+                      <Link to={"/cart"}>
+                        <button
+                          type="button"
+                          className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        >
+                          <span className="sr-only">View notifications</span>
+                          <ShoppingCartIcon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                          />
+                        </button>
+                      </Link>
+                      {items.length > 0 && (
                         <span className="inline-flex items-center rounded-md mb-5 -ml-3 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                          3
+                          {items.length}
                         </span>
+                      )}
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
@@ -109,7 +114,8 @@ export default function Navbar(props) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <Link to={item.link}
+                                  <Link
+                                    to={item.link}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
@@ -193,20 +199,22 @@ export default function Navbar(props) {
                         />
                       </button>
                     </Link>
-                    <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 mb-5 -ml-3 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                      3
-                    </span>
+                    {items.length > 0 && (
+                      <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 mb-5 -ml-3 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                        {items.length}
+                      </span>
+                    )}
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
                       <Link to={item.link}>
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                      >
-                        {item.name}
-                      </Disclosure.Button>
+                        <Disclosure.Button
+                          key={item.name}
+                          as="a"
+                          className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        >
+                          {item.name}
+                        </Disclosure.Button>
                       </Link>
                     ))}
                   </div>

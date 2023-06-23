@@ -16,6 +16,7 @@ export const createUserAsync = createAsyncThunk(
     return response.data;
   }
 );
+
 export const checkUserAsync = createAsyncThunk(
   'auth/checkUser',
   async (userdata) => {

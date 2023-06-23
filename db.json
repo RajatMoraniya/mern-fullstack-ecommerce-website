@@ -2336,52 +2336,44 @@
   ],
   "users": [
     {
-      "email": "test@gmail.com",
-      "password": "@Rj15bhjk",
-      "id": 1
-    },
-    {
-      "email": "test232@gmail.com",
-      "password": "@Testjs123",
-      "id": 2
-    },
-    {
       "email": "test3@gmail.com",
       "password": "@Test3js",
+      "addresses": [
+        {
+          "name": "Rajat Moraniya ",
+          "email": "rajatindian123@gmail.com",
+          "phone": "08602846369",
+          "street": "2nd Left Near The Social Cafe Bholaram Ustad Marg Ab Road Indore  452014",
+          "city": "Indore",
+          "state": "Madhya Pradesh",
+          "pinCode": "452014"
+        },
+        {
+          "name": "Test",
+          "email": "test@gmail.com",
+          "phone": "4565556655",
+          "street": "12th street",
+          "city": "Indore",
+          "state": "Madhya Pradesh",
+          "pinCode": "45"
+        }
+      ],
       "id": 3
     },
     {
       "email": "test4@gmail.com",
       "password": "@Test4js",
+      "addresses": [],
       "id": 4
     },
     {
       "email": "test5@gmail.com",
       "password": "@Test5js",
+      "addresses": [],
       "id": 5
     }
   ],
   "cart": [
-    {
-      "id": 6,
-      "title": "MacBook Pro",
-      "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
-      "price": 1749,
-      "discountPercentage": 11.02,
-      "rating": 4.57,
-      "stock": 83,
-      "brand": "Apple",
-      "category": "laptops",
-      "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
-      "images": [
-        "https://i.dummyjson.com/data/products/6/1.png",
-        "https://i.dummyjson.com/data/products/6/2.jpg",
-        "https://i.dummyjson.com/data/products/6/3.png",
-        "https://i.dummyjson.com/data/products/6/4.jpg"
-      ],
-      "quantity": 1,
-      "user": 4
-    },
     {
       "id": 3,
       "title": "Samsung Universe 9",
@@ -2441,23 +2433,39 @@
       "user": 5
     },
     {
-      "id": 5,
-      "title": "Huawei P30",
-      "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-      "price": 499,
-      "discountPercentage": 10.58,
+      "title": "Samsung Universe 9",
+      "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+      "price": 1249,
+      "discountPercentage": 15.46,
       "rating": 4.09,
-      "stock": 32,
-      "brand": "Huawei",
+      "stock": 36,
+      "brand": "Samsung",
       "category": "smartphones",
-      "thumbnail": "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+      "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
       "images": [
-        "https://i.dummyjson.com/data/products/5/1.jpg",
-        "https://i.dummyjson.com/data/products/5/2.jpg",
-        "https://i.dummyjson.com/data/products/5/3.jpg"
+        "https://i.dummyjson.com/data/products/3/1.jpg"
       ],
       "quantity": 1,
-      "user": 4
+      "user": 4,
+      "id": 8
+    },
+    {
+      "title": "Samsung Universe 9",
+      "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+      "price": 1249,
+      "discountPercentage": 15.46,
+      "rating": 4.09,
+      "stock": 36,
+      "brand": "Samsung",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/3/1.jpg"
+      ],
+      "quantity": 1,
+      "user": 3,
+      "id": 9
     }
-  ]
+  ],
+  "orders": []
 }

@@ -18,9 +18,9 @@ const navigation = [
   { name: "Team", href: "#", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Your Profile", link: "/" },
+  { name: "Settings", link: "/" },
+  { name: "Sign out", link: "/login" },
 ];
 
 function classNames(...classes) {
@@ -109,15 +109,14 @@ export default function Navbar(props) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
+                                  <Link to={item.link}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -200,14 +199,15 @@ export default function Navbar(props) {
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
+                      <Link to={item.link}>
                       <Disclosure.Button
                         key={item.name}
                         as="a"
-                        href={item.href}
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
                         {item.name}
                       </Disclosure.Button>
+                      </Link>
                     ))}
                   </div>
                 </div>

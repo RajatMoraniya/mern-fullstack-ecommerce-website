@@ -2462,10 +2462,129 @@
       "images": [
         "https://i.dummyjson.com/data/products/3/1.jpg"
       ],
-      "quantity": 1,
+      "quantity": 3,
       "user": 3,
       "id": 9
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "items": [
+        {
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/3/1.jpg"
+          ],
+          "quantity": 1,
+          "user": 3,
+          "id": 9
+        }
+      ],
+      "totalAmount": 1249,
+      "totalItems": 1,
+      "user": {
+        "email": "test3@gmail.com",
+        "password": "@Test3js",
+        "addresses": [
+          {
+            "name": "Rajat Moraniya ",
+            "email": "rajatindian123@gmail.com",
+            "phone": "08602846369",
+            "street": "2nd Left Near The Social Cafe Bholaram Ustad Marg Ab Road Indore  452014",
+            "city": "Indore",
+            "state": "Madhya Pradesh",
+            "pinCode": "452014"
+          },
+          {
+            "name": "Test",
+            "email": "test@gmail.com",
+            "phone": "4565556655",
+            "street": "12th street",
+            "city": "Indore",
+            "state": "Madhya Pradesh",
+            "pinCode": "45"
+          }
+        ],
+        "id": 3
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Rajat Moraniya ",
+        "email": "rajatindian123@gmail.com",
+        "phone": "08602846369",
+        "street": "2nd Left Near The Social Cafe Bholaram Ustad Marg Ab Road Indore  452014",
+        "city": "Indore",
+        "state": "Madhya Pradesh",
+        "pinCode": "452014"
+      },
+      "id": 1
+    },
+    {
+      "items": [
+        {
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/3/1.jpg"
+          ],
+          "quantity": 3,
+          "user": 3,
+          "id": 9
+        }
+      ],
+      "totalAmount": 3747,
+      "totalItems": 3,
+      "user": {
+        "email": "test3@gmail.com",
+        "password": "@Test3js",
+        "addresses": [
+          {
+            "name": "Rajat Moraniya ",
+            "email": "rajatindian123@gmail.com",
+            "phone": "08602846369",
+            "street": "2nd Left Near The Social Cafe Bholaram Ustad Marg Ab Road Indore  452014",
+            "city": "Indore",
+            "state": "Madhya Pradesh",
+            "pinCode": "452014"
+          },
+          {
+            "name": "Test",
+            "email": "test@gmail.com",
+            "phone": "4565556655",
+            "street": "12th street",
+            "city": "Indore",
+            "state": "Madhya Pradesh",
+            "pinCode": "45"
+          }
+        ],
+        "id": 3
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Rajat Moraniya ",
+        "email": "rajatindian123@gmail.com",
+        "phone": "08602846369",
+        "street": "2nd Left Near The Social Cafe Bholaram Ustad Marg Ab Road Indore  452014",
+        "city": "Indore",
+        "state": "Madhya Pradesh",
+        "pinCode": "452014"
+      },
+      "id": 2
+    }
+  ]
 }

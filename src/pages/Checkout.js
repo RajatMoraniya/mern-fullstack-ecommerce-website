@@ -10,25 +10,6 @@ import { useForm } from "react-hook-form";
 import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
 import { createOrderAsync } from "../features/order/orderSlice";
 
-const addresses = [
-  {
-    name: "Leslie Alexander",
-    street: "15th Main",
-    city: "Hosangabad",
-    pinCode: 452001,
-    state: "Madhya Pradesh",
-    phone: 456874585555,
-  },
-  {
-    name: "John Dev",
-    street: "65th Main",
-    city: "Delhi",
-    pinCode: 56001,
-    state: "Delhi",
-    phone: 6854564646,
-  },
-];
-
 function Checkout() {
   const dispatch = useDispatch();
 
@@ -40,13 +21,13 @@ function Checkout() {
   } = useForm();
 
   const user = useSelector(selectLoggedInUser);
-  const myCartItems = useSelector(selectCartItems);
+  const items = useSelector(selectCartItems);
 
-  const totalAmount = myCartItems.reduce(
+  const totalAmount = items.reduce(
     (amount, item) => item.price * item.quantity + amount,
     0
   );
-  const totalItems = myCartItems.reduce((total, item) => item.quantity + total, 0);
+  const totalItems = items.reduce((total, item) => item.quantity + total, 0);
 
   const [open, setOpen] = useState(true);
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -73,15 +54,29 @@ function Checkout() {
   };
 
   const handleOrder = (e) => {
-    const order = {myCartItems, totalAmount, totalItems, user, paymentMethod, selectedAddress}
-    dispatch(createOrderAsync(order))
+    if (selectedAddress && paymentMethod) {
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user,
+        paymentMethod,
+        selectedAddress,
+      };
+      dispatch(createOrderAsync(order));
+      // need to redirect from here to a new page of order success.
+    } else {
+      // TODO : we can use proper messaging popup here
+      alert('Enter Address and Payment method')
+    }
     //TODO : Redirect to order-success page
     //TODO : clear cart after order
-    //TODO : on server change the stock number of myCartItems
+    //TODO : on server change the stock number of items
   };
+  
   return (
     <>
-      {!myCartItems.length && <Navigate to="/" replace={true}></Navigate>}
+      {!items.length && <Navigate to="/" replace={true}></Navigate>}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -246,7 +241,7 @@ function Checkout() {
                   </div>
                 </div>
 
-                <div className="mt-6 flex myCartItems-center justify-end gap-x-6">
+                <div className="mt-6 flex items-center justify-end gap-x-6">
                   <button
                     onClick={e=>reset()}
                     type="button"
@@ -295,7 +290,7 @@ function Checkout() {
                             </p>
                           </div>
                         </div>
-                        <div className="hidden sm:flex sm:flex-col sm:myCartItems-end">
+                        <div className="hidden sm:flex sm:flex-col sm:items-end">
                           <p className="text-sm leading-6 text-gray-900">
                             Phone: {address.phone}
                           </p>
@@ -316,7 +311,7 @@ function Checkout() {
                         Choose One
                       </p>
                       <div className="mt-6 space-y-6">
-                        <div className="flex myCartItems-center gap-x-3">
+                        <div className="flex items-center gap-x-3">
                           <input
                             id="cash"
                             name="payments"
@@ -333,7 +328,7 @@ function Checkout() {
                             Cash
                           </label>
                         </div>
-                        <div className="flex myCartItems-center gap-x-3">
+                        <div className="flex items-center gap-x-3">
                           <input
                             id="card"
                             onChange={handlePayment}
@@ -365,7 +360,7 @@ function Checkout() {
                 </h1>
                 <div className="flow-root">
                   <ul role="list" className="-my-6 divide-y divide-gray-200">
-                    {myCartItems.map((item) => (
+                    {items.map((item) => (
                       <li key={item.id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                           <img
@@ -387,7 +382,7 @@ function Checkout() {
                               {item.brand}
                             </p>
                           </div>
-                          <div className="flex flex-1 myCartItems-end justify-between text-sm">
+                          <div className="flex flex-1 items-end justify-between text-sm">
                             <div className="text-gray-500">
                               <label
                                 htmlFor="quantity"
@@ -430,8 +425,8 @@ function Checkout() {
                   <p>$ {totalAmount}</p>
                 </div>
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
-                  <p>Total myCartItems in Cart</p>
-                  <p>{totalItems} myCartItems</p>
+                  <p>Total items in Cart</p>
+                  <p>{totalItems} items</p>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">
                   Shipping and taxes calculated at checkout.
@@ -439,7 +434,7 @@ function Checkout() {
                 <div className="mt-6">
                   <div
                     onClick={handleOrder}
-                    className="flex cursor-pointer myCartItems-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                    className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
                     Order Now
                   </div>

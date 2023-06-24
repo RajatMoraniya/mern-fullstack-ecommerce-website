@@ -17,7 +17,7 @@ export default function Cart() {
 
   const handleQuantity = (e, item) => {
     const updateData = { ...item, quantity: +e.target.value };
-    console.log(updateData);
+    // console.log(updateData);
     dispatch(updateCartAsync(updateData));
   };
 

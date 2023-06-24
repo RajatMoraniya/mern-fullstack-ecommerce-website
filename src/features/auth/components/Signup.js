@@ -13,7 +13,7 @@ export default function Signup() {
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <>
@@ -37,7 +37,7 @@ export default function Signup() {
             onSubmit={handleSubmit((data) => {
               const userData = { email: data.email, password: data.password, addresses : [] };
               dispatch(createUserAsync(userData));
-              console.log(data);
+              // console.log(data);
             })}
           >
             <div>

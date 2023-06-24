@@ -71,18 +71,18 @@ export default function ProductList() {
       let index = newFilter[section.id].findIndex((el) => el == option.type);
       newFilter[section.id].splice(index, 1);
     }
-    console.log({ newFilter });
+    // console.log({ newFilter });
     setFilter(newFilter);
   };
 
   const handleSort = (e, option) => {
     const newSort = { _sort: option.sort, _order: option.order };
-    console.log({ newSort });
+    // console.log({ newSort });
     setSort(newSort);
   };
 
   const handlePage = (page) => {
-    console.log({ page });
+    // console.log({ page });
     setPage(page);
   };
 

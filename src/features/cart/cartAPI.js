@@ -52,6 +52,6 @@ export function resetCart(userId) {
     for (let item of items) {
       await deleteCart(item.id);
     }
-    resolve({status:'success'})
+    resolve({ status: "success" });
   });
 }

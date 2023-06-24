@@ -7,8 +7,12 @@ import {
   updateCartAsync,
 } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
-import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
-import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
+import { updateUserAsync } from "../features/auth/authSlice";
+import {
+  createOrderAsync,
+  selectCurrentOrder,
+} from "../features/order/orderSlice";
+import { selectUserInfo } from "../features/user/userSlice";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -20,10 +24,9 @@ function Checkout() {
     formState: { errors },
   } = useForm();
 
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const items = useSelector(selectCartItems);
   const currentOrder = useSelector(selectCurrentOrder);
-
 
   const totalAmount = items.reduce(
     (amount, item) => item.price * item.quantity + amount,
@@ -37,7 +40,7 @@ function Checkout() {
 
   const handleQuantity = (e, item) => {
     const updateData = { ...item, quantity: +e.target.value };
-    console.log(updateData);
+    // console.log(updateData);
     dispatch(updateCartAsync(updateData));
   };
 
@@ -46,12 +49,12 @@ function Checkout() {
   };
 
   const handleAddress = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setPaymentMethod(e.target.value);
   };
 
@@ -64,23 +67,28 @@ function Checkout() {
         user,
         paymentMethod,
         selectedAddress,
-        status: 'pending' // other status can be delivered, received.
+        status: "pending", // other status can be delivered, received.
       };
       dispatch(createOrderAsync(order));
       // need to redirect from here to a new page of order success.
     } else {
       // TODO : we can use proper messaging popup here
-      alert('Enter Address and Payment method')
+      alert("Enter Address and Payment method");
     }
     //TODO : Redirect to order-success page
     //TODO : clear cart after order
     //TODO : on server change the stock number of items
   };
-  
+
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
-      {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
+      {currentOrder && (
+        <Navigate
+          to={`/order-success/${currentOrder.id}`}
+          replace={true}
+        ></Navigate>
+      )}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -88,7 +96,7 @@ function Checkout() {
               className="bg-white px-5 py-12 mt-12"
               noValidate
               onSubmit={handleSubmit((data) => {
-                console.log(data);
+                // console.log(data);
                 dispatch(
                   updateUserAsync({
                     ...user,
@@ -247,7 +255,7 @@ function Checkout() {
 
                 <div className="mt-6 flex items-center justify-end gap-x-6">
                   <button
-                    onClick={e=>reset()}
+                    onClick={(e) => reset()}
                     type="button"
                     className="text-sm font-semibold leading-6 text-gray-900"
                   >

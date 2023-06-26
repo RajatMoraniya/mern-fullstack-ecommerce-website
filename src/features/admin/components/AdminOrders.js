@@ -112,7 +112,7 @@ function AdminOrders() {
                   <th className="py-3 px-6 text-center">Shipping Address</th>
                   <th className="py-3 px-6 text-center">Status</th>
                   <th className="py-3 px-6 text-center">Actions</th>
-                </tr>
+                </tr> 
               </thead>
               <tbody className="text-gray-800 text-sm font-light">
                 {orders.map((order) => (

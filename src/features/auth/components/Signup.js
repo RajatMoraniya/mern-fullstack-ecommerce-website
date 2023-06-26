@@ -17,7 +17,7 @@ export default function Signup() {
 
   return (
     <>
-    {user && <Navigate to="/" replace={true}></Navigate>}
+      {user && <Navigate to="/" replace={true}></Navigate>}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -35,8 +35,15 @@ export default function Signup() {
             noValidate
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
-              const userData = { email: data.email, password: data.password, addresses : [] };
-              dispatch(createUserAsync(userData));
+              dispatch(
+                createUserAsync({
+                  email: data.email,
+                  password: data.password,
+                  addresses: [],
+                  role: "user",
+                  //TODO: this role can be directly given on backend
+                })
+              );
               // console.log(data);
             })}
           >

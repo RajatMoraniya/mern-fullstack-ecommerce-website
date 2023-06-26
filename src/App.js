@@ -24,6 +24,10 @@ import UserProfilePage from "./pages/UserProfilePage";
 import { fetchLoggedInUserAsync } from "./features/user/userSlice";
 import Logout from "./features/auth/components/Logout";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import AdminProductDetailPage from "./pages/AdminProductDetailPage";
+import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
+import AdminProductFormPage from "./pages/AdminProductFormPage";
+import AdminHome from "./pages/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +71,38 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/admin",
+    element: (
+      <ProtectedAdmin>
+        <AdminHome />
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: "/admin/product-detail/:id",
+    element: (
+      <ProtectedAdmin>
+        <AdminProductDetailPage />
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: "/admin/product-form",
+    element: (
+      <ProtectedAdmin>
+        <AdminProductFormPage />
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: "/admin/product-form/edit/:id",
+    element: (
+      <ProtectedAdmin>
+        <AdminProductFormPage />
+      </ProtectedAdmin>
+    ),
+  },
+  {
     path: "/order-success/:id",
     element: (
       <Protected>
@@ -80,7 +116,6 @@ const router = createBrowserRouter([
       <Protected>
         <UserOrdersPage />
       </Protected>
-      // we will add Page later right now using component directly.
     ),
   },
   {
@@ -92,8 +127,8 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/forgot-password',
-    element: <ForgotPasswordPage/>,
+    path: "/forgot-password",
+    element: <ForgotPasswordPage />,
   },
   {
     path: "/logout",

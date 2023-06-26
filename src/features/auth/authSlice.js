@@ -33,14 +33,13 @@ export const checkUserAsync = createAsyncThunk(
 );
 
 export const signOutAsync = createAsyncThunk(
-  'user/signOut',
+  "user/signOut",
   async (loginInfo) => {
     const response = await signOut(loginInfo);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
-
 
 export const authSlice = createSlice({
   name: "auth",
@@ -79,7 +78,7 @@ export const authSlice = createSlice({
       .addCase(signOutAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.loggedInUser = null;
-      })
+      });
   },
 });
 

@@ -5,7 +5,7 @@ import ProductList from "../features/product/components/ProductList";
 function Home() {
   return (
     <>
-      <Navbar >
+      <Navbar>
         <ProductList />
       </Navbar>
     </>

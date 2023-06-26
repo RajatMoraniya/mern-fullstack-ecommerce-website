@@ -6,7 +6,7 @@ function UserProfilePage() {
     <div>
       <Navbar>
         <h1 className="mx-auto text-2xl">My Profile</h1>
-        <UserProfile></UserProfile>
+        <UserProfile />
       </Navbar>
     </div>
   );

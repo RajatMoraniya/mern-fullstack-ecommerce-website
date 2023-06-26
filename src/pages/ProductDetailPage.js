@@ -5,7 +5,7 @@ import ProductDetail from "../features/product/components/ProductDetail";
 function ProductDetailPage() {
   return (
     <>
-      <Navbar >
+      <Navbar>
         <ProductDetail />
       </Navbar>
     </>

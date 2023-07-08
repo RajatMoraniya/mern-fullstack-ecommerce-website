@@ -27,12 +27,10 @@ export function updateCart(updateData) {
 
 export function deleteCart(deleteId) {
   return new Promise(async (resolve) => {
-    console.log("front dlt id" , deleteId)
-    const response = await fetch("http://localhost:8080/cart/" + deleteId, {
+    await fetch("http://localhost:8080/cart/" + deleteId, {
       method: "DELETE",
       headers: { "content-type": "application/json" },
     });
-    const data = await response.json();
     resolve({ data: { id: deleteId } });
   });
 }

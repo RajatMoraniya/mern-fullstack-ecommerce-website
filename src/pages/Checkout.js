@@ -7,7 +7,7 @@ import {
   updateCartAsync,
 } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
-import { updateUserAsync } from "../features/auth/authSlice";
+import { updateUserAsync } from "../features/user/userSlice";
 import {
   createOrderAsync,
   selectCurrentOrder,
@@ -37,8 +37,6 @@ function Checkout() {
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
-
-  const [open, setOpen] = useState(true);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
@@ -54,7 +52,7 @@ function Checkout() {
 
   const handleAddress = (e) => {
     // console.log(e.target.value);
-    setSelectedAddress({...user.addresses[e.target.value]});
+    setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
@@ -280,7 +278,7 @@ function Checkout() {
                   <p className="mt-1 text-sm leading-6 text-gray-600">
                     Choose from Existing addresses
                   </p>
-                  <ul role="list">
+                  <ul >
                     {user.addresses.map((address, index) => (
                       <li
                         key={index}
@@ -375,7 +373,7 @@ function Checkout() {
                   Cart
                 </h1>
                 <div className="flow-root">
-                  <ul role="list" className="-my-6 divide-y divide-gray-200">
+                  <ul  className="-my-6 divide-y divide-gray-200">
                     {items.map((item) => (
                       <li key={item.id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">

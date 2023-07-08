@@ -112,11 +112,14 @@ function AdminOrders() {
                   <th className="py-3 px-6 text-center">Shipping Address</th>
                   <th className="py-3 px-6 text-center">Status</th>
                   <th className="py-3 px-6 text-center">Actions</th>
-                </tr> 
+                </tr>
               </thead>
               <tbody className="text-gray-800 text-sm font-light">
                 {orders.map((order) => (
-                  <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  <tr
+                    key={order.id}
+                    className="border-b border-gray-200 hover:bg-gray-100"
+                  >
                     <td className="py-3 px-6 text-center whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="mr-2"></div>
@@ -124,10 +127,11 @@ function AdminOrders() {
                       </div>
                     </td>
                     <td className="py-3 px-6 text-center">
-                      {order.items.map((item) => (
-                        <div className="flex items-center">
+                      {order.items.map((item, index) => (
+                        <div key={index} className="flex items-center">
                           <div className="mr-2">
                             <img
+                              alt="/*/"
                               className="w-6 h-6 rounded-full"
                               src={item.thumbnail}
                             />

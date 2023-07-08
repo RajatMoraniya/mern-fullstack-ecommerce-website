@@ -7,7 +7,8 @@ export function createOrder(order) {
     });
     const data = await response.json();
     // TODO: on server it will only return some info of user (not password)
-    resolve({ data });
+    resolve({data});
+
   });
 }
 

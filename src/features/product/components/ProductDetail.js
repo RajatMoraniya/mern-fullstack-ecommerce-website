@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductByIdAsync, selectProductListStatus, selectedProduct } from "../productSlice";
-import { useParams } from "react-router-dom";
+import {
+  fetchProductByIdAsync,
+  selectProductListStatus,
+  selectProductById,
+} from "../productSlice";
+import { Link, useParams } from "react-router-dom";
 import { selectLoggedInUser } from "../../auth/authSlice";
 import { addToCartAsync, selectCartItems } from "../../cart/cartSlice";
 import { discountedPrice } from "../../../app/constaints";
-import { useAlert } from 'react-alert';
-import { Grid } from 'react-loader-spinner';
+import { useAlert } from "react-alert";
+import { Grid } from "react-loader-spinner";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -39,7 +43,7 @@ function classNames(...classes) {
 
 export default function ProductDetail() {
   const dispatch = useDispatch();
-  const product = useSelector(selectedProduct);
+  const product = useSelector(selectProductById);
   const user = useSelector(selectLoggedInUser);
   const items = useSelector(selectCartItems);
   const [selectedColor, setSelectedColor] = useState(colors[0]);
@@ -63,15 +67,15 @@ export default function ProductDetail() {
       };
       dispatch(addToCartAsync(newItem));
       // TODO: it will be based on server response of backend
-      alert.success('Item added to Cart');
+      alert.success("Item added to Cart");
     } else {
-      alert.error('Item Already added');
+      alert.error("Item Already added");
     }
   };
 
   return (
     <div className="bg-white">
-       {status === 'loading' ? (
+      {status === "loading" ? (
         <Grid
           height="80"
           width="80"
@@ -86,10 +90,7 @@ export default function ProductDetail() {
       {product && (
         <div className="pt-6">
           <nav aria-label="Breadcrumb">
-            <ol
-              
-              className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
-            >
+            <ol className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
               {product.breadcrumbs &&
                 product.breadcrumbs.map((breadcrumb) => (
                   <li key={breadcrumb.id}>
@@ -246,9 +247,7 @@ export default function ProductDetail() {
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
                     <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                    <p
-                      className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                    >
+                    <p className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
                       Size guide
                     </p>
                   </div>
@@ -322,13 +321,22 @@ export default function ProductDetail() {
                   </RadioGroup>
                 </div>
 
-                <button
-                  onClick={(e) => handleAddToCart(e)}
-                  type="submit"
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  Add to Cart
-                </button>
+                {product.stock <= 0 ? (
+                  <Link
+                    to={"/"}
+                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Coming Soon... Check Other Products
+                  </Link>
+                ) : (
+                  <button
+                    onClick={(e) => handleAddToCart(e)}
+                    type="submit"
+                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Add to Cart
+                  </button>
+                )}
               </form>
             </div>
 
@@ -350,7 +358,7 @@ export default function ProductDetail() {
                 </h3>
 
                 <div className="mt-4">
-                  <ul  className="list-disc space-y-2 pl-4 text-sm">
+                  <ul className="list-disc space-y-2 pl-4 text-sm">
                     {highlights.map((highlight) => (
                       <li key={highlight} className="text-gray-400">
                         <span className="text-gray-600">{highlight}</span>

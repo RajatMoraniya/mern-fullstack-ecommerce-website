@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  fetchAllBrandsAsync,
-  fetchAllCategoriesAsync,
-  fetchProductByIdAsync,
+  fetchBrandsAsync,
+  fetchCategoriesAsync,
   fetchProductsByFiltersAsync,
-  selectAllBrands,
-  selectAllCategories,
+  selectBrands,
+  selectCategories,
   selectAllProducts,
   selectProductListStatus,
   selectTotalItems,
@@ -19,12 +18,9 @@ import {
   MinusIcon,
   PlusIcon,
   Squares2X2Icon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constaints";
-import { fetchAllCategories } from "../ProductAPI";
 import Pagination from "../../common/Pagination";
 import { Grid } from "react-loader-spinner";
 const sortOptions = [
@@ -40,8 +36,8 @@ function classNames(...classes) {
 export default function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
-  const categories = useSelector(selectAllCategories);
-  const brands = useSelector(selectAllBrands);
+  const categories = useSelector(selectCategories);
+  const brands = useSelector(selectBrands);
   const totalItems = useSelector(selectTotalItems);
   const status = useSelector(selectProductListStatus);
   const filters = [
@@ -72,7 +68,7 @@ export default function ProductList() {
         newFilter[section.id] = [option.value];
       }
     } else {
-      let index = newFilter[section.id].findIndex((el) => el == option.type);
+      let index = newFilter[section.id].findIndex((el) => el === option.type);
       newFilter[section.id].splice(index, 1);
     }
     // console.log({ newFilter });
@@ -101,9 +97,9 @@ export default function ProductList() {
   }, [totalItems, sort]);
 
   useEffect(() => {
-    dispatch(fetchAllBrandsAsync());
-    dispatch(fetchAllCategoriesAsync());
-  }, []);
+    dispatch(fetchBrandsAsync());
+    dispatch(fetchCategoriesAsync());
+  }, [dispatch]);
 
   return (
     <div>
@@ -452,6 +448,11 @@ function ProductGrid({ products, status }) {
                   {product.deleted && (
                     <div>
                       <p className="text-sm text-red-400">product deleted</p>
+                    </div>
+                  )}
+                  {product.stock <= 0 && (
+                    <div>
+                      <p className="text-sm text-red-400">out of stock</p>
                     </div>
                   )}
                   {/* will not be needed when backend is implemented */}

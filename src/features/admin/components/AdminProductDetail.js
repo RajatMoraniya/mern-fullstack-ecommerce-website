@@ -4,7 +4,7 @@ import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductByIdAsync,
-  selectedProduct,
+  selectProductById,
 } from "../../product/productSlice";
 import { useParams } from "react-router-dom";
 import { addToCartAsync } from "../../cart/cartSlice";
@@ -46,7 +46,7 @@ export default function AdminProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const user = useSelector(selectLoggedInUser);
-  const product = useSelector(selectedProduct);
+  const product = useSelector(selectProductById);
   const dispatch = useDispatch();
   const params = useParams();
 

@@ -3,15 +3,16 @@ import {
   clearSelectedProduct,
   createProductAsync,
   fetchProductByIdAsync,
-  selectAllBrands,
-  selectAllCategories,
-  selectedProduct,
+  selectBrands,
+  selectCategories,
+  selectProductById,
   updateProductAsync,
 } from "../../product/productSlice";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Modal from "../../common/Modal";
+import { useAlert } from "react-alert";
 
 function ProductForm() {
   const {
@@ -21,13 +22,13 @@ function ProductForm() {
     reset,
     formState: { errors },
   } = useForm();
-  const brands = useSelector(selectAllBrands);
-  const categories = useSelector(selectAllCategories);
+  const brands = useSelector(selectBrands);
+  const categories = useSelector(selectCategories);
   const dispatch = useDispatch();
   const params = useParams();
-  const selectedProductId = useSelector(selectedProduct);
+  const selectedProduct = useSelector(selectProductById);
   const [openModal, setOpenModal] = useState(null);
-
+  const alert = useAlert();
   useEffect(() => {
     if (params.id) {
       dispatch(fetchProductByIdAsync(params.id));
@@ -37,23 +38,23 @@ function ProductForm() {
   }, [params.id, dispatch]);
 
   useEffect(() => {
-    if (selectedProductId && params.id) {
-      setValue("title", selectedProductId.title);
-      setValue("description", selectedProductId.description);
-      setValue("price", selectedProductId.price);
-      setValue("discountPercentage", selectedProductId.discountPercentage);
-      setValue("thumbnail", selectedProductId.thumbnail);
-      setValue("stock", selectedProductId.stock);
-      setValue("image1", selectedProductId.images[0]);
-      setValue("image2", selectedProductId.images[1]);
-      setValue("image3", selectedProductId.images[2]);
-      setValue("brand", selectedProductId.brand);
-      setValue("category", selectedProductId.category);
+    if (selectedProduct && params.id) {
+      setValue("title", selectedProduct.title);
+      setValue("description", selectedProduct.description);
+      setValue("price", selectedProduct.price);
+      setValue("discountPercentage", selectedProduct.discountPercentage);
+      setValue("thumbnail", selectedProduct.thumbnail);
+      setValue("stock", selectedProduct.stock);
+      setValue("image1", selectedProduct.images[0]);
+      setValue("image2", selectedProduct.images[1]);
+      setValue("image3", selectedProduct.images[2]);
+      setValue("brand", selectedProduct.brand);
+      setValue("category", selectedProduct.category);
     }
-  }, [selectedProductId, params.id, setValue]);
+  }, [selectedProduct, params.id, setValue]);
 
   const handleDelete = () => {
-    const product = { ...selectedProductId };
+    const product = { ...selectedProduct };
     product.deleted = true;
     dispatch(updateProductAsync(product));
   };
@@ -82,13 +83,16 @@ function ProductForm() {
 
           if (params.id) {
             product.id = params.id;
-            product.rating = selectedProductId.rating || 0;
+            product.rating = selectedProduct.rating || 0;
             dispatch(updateProductAsync(product));
+            alert.success("Product Updated");
+
             reset();
           } else {
             dispatch(createProductAsync(product));
+            alert.success("Product Created");
+            // TODO: these alerts should check if API failed
             reset();
-            //TODO:  on product successfully added clear fields and show a message
           }
         })}
       >
@@ -99,11 +103,12 @@ function ProductForm() {
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              {selectedProduct.deleted && params.id && (
+              {selectedProduct && selectedProduct.deleted && (
                 <h2 className="text-red-500 sm:col-span-6">
                   This product is deleted
                 </h2>
               )}
+
               <div className="sm:col-span-6">
                 <label
                   htmlFor="title"
@@ -437,7 +442,7 @@ function ProductForm() {
             Cancel
           </button>
 
-          {selectedProductId && (
+          {selectedProduct && !selectedProduct.deleted && (
             <button
               onClick={(e) => {
                 e.preventDefault();
@@ -457,15 +462,17 @@ function ProductForm() {
           </button>
         </div>
       </form>
-      <Modal
-        title={`Delete ${selectedProduct.title}`}
-        message="Are you sure you want to delete this Product ?"
-        dangerOption="Delete"
-        cancelOption="Cancel"
-        dangerAction={handleDelete}
-        cancelAction={() => setOpenModal(null)}
-        showModal={openModal}
-      ></Modal>
+      {selectedProduct && (
+        <Modal
+          title={`Delete ${selectedProduct.title}`}
+          message="Are you sure you want to delete this Product ?"
+          dangerOption="Delete"
+          cancelOption="Cancel"
+          dangerAction={handleDelete}
+          cancelAction={() => setOpenModal(null)}
+          showModal={openModal}
+        ></Modal>
+      )}
     </>
   );
 }

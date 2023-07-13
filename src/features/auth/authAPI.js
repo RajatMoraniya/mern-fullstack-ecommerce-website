@@ -18,7 +18,7 @@ export function signOut(userId) {
   });
 }
 
-export function checkUser(loginInfo) {
+export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch("http://localhost:8080/auth/login", {
@@ -26,6 +26,23 @@ export function checkUser(loginInfo) {
         body: JSON.stringify(loginInfo),
         headers: { "content-type": "application/json" },
       });
+      if (response.ok) {
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const err = await response.text();
+        reject(err);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export function checkAuth() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch("http://localhost:8080/auth/check");
       if (response.ok) {
         const data = await response.json();
         resolve({ data });

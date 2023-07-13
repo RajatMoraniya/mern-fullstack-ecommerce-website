@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLoggedInUserOrderAsync, selectUserInfo, selectUserOrders } from "../userSlice";
+import { fetchLoggedInUserOrderAsync, selectUserInfoStatus, selectUserOrders } from "../userSlice";
 import { Link } from "react-router-dom";
 import { discountedPrice } from "../../../app/constaints";
+import { Grid } from "react-loader-spinner";
 
 export default function UserOrders() {
   const dispatch = useDispatch();
-  const userInfo = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrders);
+  const status = useSelector(selectUserInfoStatus);
 
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrderAsync(userInfo.id));
-  }, [dispatch, userInfo]);
+    dispatch(fetchLoggedInUserOrderAsync());
+  }, [dispatch]);
 
   return (
     <div>
-      {!orders.length && (
+      {status !== "loading"  && orders?.length === 0 && (
         <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
           <div className="text-center">
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
@@ -33,7 +34,7 @@ export default function UserOrders() {
         </main>
       )}
 
-      {orders.length > 0 &&
+      {status !== "loading"  && orders?.length > 0 &&
         orders.map((order) => (
           <div key={order.id}>
             <div>
@@ -132,6 +133,19 @@ export default function UserOrders() {
             </div>
           </div>
         ))}
+
+      {status === "loading" ? (
+        <Grid
+          height="80"
+          width="80"
+          color="rgb(79, 70, 229) "
+          ariaLabel="grid-loading"
+          radius="12.5"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      ) : null}
     </div>
   );
 }

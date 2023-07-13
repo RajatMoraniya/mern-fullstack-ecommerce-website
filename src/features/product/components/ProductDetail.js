@@ -8,7 +8,6 @@ import {
   selectProductById,
 } from "../productSlice";
 import { Link, useParams } from "react-router-dom";
-import { selectLoggedInUser } from "../../auth/authSlice";
 import { addToCartAsync, selectCartItems } from "../../cart/cartSlice";
 import { discountedPrice } from "../../../app/constaints";
 import { useAlert } from "react-alert";
@@ -44,7 +43,6 @@ function classNames(...classes) {
 export default function ProductDetail() {
   const dispatch = useDispatch();
   const product = useSelector(selectProductById);
-  const user = useSelector(selectLoggedInUser);
   const items = useSelector(selectCartItems);
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
@@ -62,7 +60,6 @@ export default function ProductDetail() {
       console.log({ items, product });
       const newItem = {
         product: product.id,
-        user: user.id,
         quantity: 1,
       };
       dispatch(addToCartAsync(newItem));

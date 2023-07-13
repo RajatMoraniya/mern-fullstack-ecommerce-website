@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectError, selectLoggedInUser } from "../authSlice";
+import { selectError, selectLoggedInUserToken } from "../authSlice";
 import { Link, Navigate } from "react-router-dom";
 import { checkUserAsync } from "../authSlice";
 import { useForm } from "react-hook-form";
@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 export default function Login() {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectLoggedInUserToken);
   const {
     register,
     handleSubmit,
@@ -100,7 +100,7 @@ export default function Login() {
                   <p className="text-red-500">{errors.password.message}</p>
                 )}
               </div>
-              {error && <p className="text-red-500">{error.message}</p>}
+              {error && <p className="text-red-500">{error.message || error}</p>}
             </div>
 
             <div>

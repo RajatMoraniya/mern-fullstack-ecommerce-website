@@ -14,8 +14,7 @@ import {
 } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";
 import { discountedPrice } from "../app/constaints";
-import { useAlert } from 'react-alert';
-
+import { useAlert } from "react-alert";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -85,11 +84,14 @@ function Checkout() {
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
-      {currentOrder && (
+      {currentOrder && currentOrder.paymentMethod === "cash" && (
         <Navigate
           to={`/order-success/${currentOrder.id}`}
           replace={true}
         ></Navigate>
+      )}
+      {currentOrder && currentOrder.paymentMethod === "card" && (
+        <Navigate to={`/stripe-checkout/`} replace={true}></Navigate>
       )}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
@@ -278,7 +280,7 @@ function Checkout() {
                   <p className="mt-1 text-sm leading-6 text-gray-600">
                     Choose from Existing addresses
                   </p>
-                  <ul >
+                  <ul>
                     {user.addresses.map((address, index) => (
                       <li
                         key={index}
@@ -373,7 +375,7 @@ function Checkout() {
                   Cart
                 </h1>
                 <div className="flow-root">
-                  <ul  className="-my-6 divide-y divide-gray-200">
+                  <ul className="-my-6 divide-y divide-gray-200">
                     {items.map((item) => (
                       <li key={item.id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -390,7 +392,9 @@ function Checkout() {
                               <h3>
                                 <a href={item.product.href}>{item.title}</a>
                               </h3>
-                              <p className="ml-4">${discountedPrice(item.product)}</p>
+                              <p className="ml-4">
+                                ${discountedPrice(item.product)}
+                              </p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {item.product.brand}

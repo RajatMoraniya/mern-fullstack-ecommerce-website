@@ -222,7 +222,7 @@ function Navbar({ children }) {
 
           <header className="bg-white shadow">
             <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
                 Bazar - India's Shopping Zone
               </h1>
             </div>

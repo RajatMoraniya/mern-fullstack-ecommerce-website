@@ -38,10 +38,12 @@ export default function Cart() {
 
   return (
     <>
-      {!items.length && cartLoaded && <Navigate to="/" replace={true}></Navigate>}
-      <div className="mx-auto bg-white mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+      {!items.length && cartLoaded && (
+        <Navigate to="/" replace={true}></Navigate>
+      )}
+      <div className="mx-auto bg-white max-w-7xl sm:px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-          <h1 className="text-4xl my-5 text-left font-bold tracking-tight text-gray-900">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl my-5 text-left font-bold tracking-tight text-gray-900">
             Cart
           </h1>
           <div className="flow-root">
@@ -57,35 +59,35 @@ export default function Cart() {
                 visible={true}
               />
             ) : null}
-            <ul  className="-my-6 divide-y divide-gray-200">
-              {items.map((item, index) => (
+            <ul className="-my-6 divide-y divide-gray-200">
+              {items.map((item) => (
                 <li key={item.id} className="flex py-6">
-                  <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                    <img
-                      src={item.product.thumbnail}
-                      alt={item.product.title}
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
+                  <Link to={`/product-detail/${item.product.id}`}>
+                    <div className="h-10 w-10 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                      <img
+                        src={item.product.thumbnail}
+                        alt={item.product.title}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  </Link>
 
                   <div className="ml-4 flex flex-1 flex-col">
                     <div>
                       <div className="flex justify-between text-base font-medium text-gray-900">
-                        <h3>
-                          <a href={item.product.thumbnail}>
-                            {item.product.title}
-                          </a>
-                        </h3>
-                        <p className="ml-4">
-                          $ {discountedPrice(item.product)}
+                        <h5 className="text-sm sm:text-xl">
+                          {item.product.title}
+                        </h5>
+                        <p className="sm:ml-4 sm:text-xl">
+                          ${discountedPrice(item.product)}
                         </p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500">
+                      <p className="sm:mt-1 text-sm text-gray-500">
                         {item.product.brand}
                       </p>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
-                      <div>
+                      <div className="mt-2">
                         <label
                           htmlFor="quantity"
                           className="inblock mr-2 text-sm font-medium leading-6 text-gray-900"
@@ -93,6 +95,7 @@ export default function Cart() {
                           Qty.
                         </label>
                         <select
+                          className="scale-75"
                           name="quantity"
                           id="quantity"
                           value={item.quantity}
@@ -136,7 +139,7 @@ export default function Cart() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+        <div className="border-t border-gray-200 bg-black-700 px-4 py-6 sm:px-6">
           <div className="flex justify-between text-base font-medium text-gray-900">
             <p>Subtotal</p>
             <p>$ {totalAmount}</p>
@@ -158,14 +161,14 @@ export default function Cart() {
           </div>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
             <p>
-              or
+              or 
               <Link to={"/"}>
                 <button
                   type="button"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                   onClick={() => setOpen(false)}
                 >
-                  Continue Shopping
+                  &nbsp;Continue Shopping
                   <span aria-hidden="true"> &rarr;</span>
                 </button>
               </Link>

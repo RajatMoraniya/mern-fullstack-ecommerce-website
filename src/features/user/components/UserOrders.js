@@ -20,6 +20,9 @@ export default function UserOrders() {
 
   return (
     <div>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl mx-2 text-left font-bold tracking-tight text-gray-900">
+        My Orders
+      </h1>
       {status !== "loading" && orders?.length === 0 && (
         <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
           <div className="text-center">
@@ -43,15 +46,15 @@ export default function UserOrders() {
         orders.map((order) => (
           <div key={order.id}>
             <div>
-              <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="sm:mx-auto mt-0.5 sm:mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                  <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
+                  <h1 className="sm:text-2xl lg:text-4xl my-2 font-bold tracking-tight text-gray-900">
                     Order # {order.id}
                   </h1>
-                  <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
+                  <h3 className="text-sm sm:text-xl my-2 font-bold tracking-tight text-red-900">
                     Order Status : {order.status}
                   </h3>
-                  <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
+                  <h3 className="text-sm sm:text-xl my-2 font-bold tracking-tight text-red-900">
                     Payment : {order.paymentMethod} - {order.paymentStatus}
                   </h3>
                   <div className="flow-root">
@@ -127,7 +130,7 @@ export default function UserOrders() {
                         </p>
                       </div>
                     </div>
-                    <div className="hidden sm:flex sm:flex-col sm:items-end">
+                    <div className="sm:flex sm:flex-col sm:items-end">
                       <p className="text-sm leading-6 text-gray-900">
                         Phone: {order.selectedAddress.phone}
                       </p>

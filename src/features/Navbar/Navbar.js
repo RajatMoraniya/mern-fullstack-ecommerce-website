@@ -42,7 +42,7 @@ function Navbar({ children }) {
                         <Link to="/">
                           <img
                             className="h-8 w-8"
-                            src="/bazar.png"
+                            src="/logo512.png"
                             alt="Logo"
                           />
                         </Link>

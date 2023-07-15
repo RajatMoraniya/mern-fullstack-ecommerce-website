@@ -11,6 +11,7 @@ import { updateUserAsync } from "../features/user/userSlice";
 import {
   createOrderAsync,
   selectCurrentOrder,
+  selectOrderStatus,
 } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";
 import { discountedPrice } from "../app/constaints";
@@ -30,6 +31,7 @@ function Checkout() {
   const user = useSelector(selectUserInfo);
   const items = useSelector(selectCartItems);
   const currentOrder = useSelector(selectCurrentOrder);
+  const createOrderStatus = useSelector(selectOrderStatus);
 
   const totalAmount = items.reduce(
     (amount, item) => discountedPrice(item.product) * item.quantity + amount,
@@ -73,12 +75,8 @@ function Checkout() {
       dispatch(createOrderAsync(order));
       // need to redirect from here to a new page of order success.
     } else {
-      // TODO : we can use proper messaging popup here
       alert.error("Enter Address and Payment method");
     }
-    //TODO : Redirect to order-success page
-    //TODO : clear cart after order
-    //TODO : on server change the stock number of items
   };
 
   return (
@@ -452,12 +450,13 @@ function Checkout() {
                   Shipping and taxes calculated at checkout.
                 </p>
                 <div className="mt-6">
-                  <div
+                  <button
+                    disabled={createOrderStatus === "loading"}
                     onClick={handleOrder}
                     className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
                     Order Now
-                  </div>
+                  </button>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <p>

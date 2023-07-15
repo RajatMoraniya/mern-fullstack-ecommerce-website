@@ -37,7 +37,7 @@ function Checkout() {
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
   const [selectedAddress, setSelectedAddress] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   const handleQuantity = (e, item) => {
     const updateData = { id: item.id, quantity: +e.target.value };
@@ -97,7 +97,7 @@ function Checkout() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
             <form
-              className="bg-white px-5 py-12 mt-12"
+              className="w-full sm:w-auto bg-white px-3 sm:px-5 py-5 sm:py-12 mt-8 sm:mt-12"
               noValidate
               onSubmit={handleSubmit((data) => {
                 // console.log(data);
@@ -306,7 +306,7 @@ function Checkout() {
                             </p>
                           </div>
                         </div>
-                        <div className="hidden sm:flex sm:flex-col sm:items-end">
+                        <div className="sm:flex sm:flex-col sm:items-end">
                           <p className="text-sm leading-6 text-gray-900">
                             Phone: {address.phone}
                           </p>
@@ -369,44 +369,46 @@ function Checkout() {
             </form>
           </div>
           <div className="lg:col-span-2">
-            <div className="mx-auto mt-12 bg-white max-w-7xl px-2 sm:px-2 lg:px-4">
-              <div className="border-t border-gray-200 px-0 py-6 sm:px-0">
-                <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
+            <div className="mx-auto bg-white max-w-7xl sm:px-4 sm:px-6 lg:px-8">
+              <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl my-5 text-left font-bold tracking-tight text-gray-900">
                   Cart
                 </h1>
                 <div className="flow-root">
                   <ul className="-my-6 divide-y divide-gray-200">
                     {items.map((item) => (
                       <li key={item.id} className="flex py-6">
-                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                          <img
-                            src={item.product.thumbnail}
-                            alt={item.product.title}
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
+                        <Link to={`/product-detail/${item.product.id}`}>
+                          <div className="h-10 w-10 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                            <img
+                              src={item.product.thumbnail}
+                              alt={item.product.title}
+                              className="h-full w-full object-cover object-center"
+                            />
+                          </div>
+                        </Link>
 
                         <div className="ml-4 flex flex-1 flex-col">
                           <div>
                             <div className="flex justify-between text-base font-medium text-gray-900">
-                              <h3>
-                                <a href={item.product.href}>{item.title}</a>
-                              </h3>
-                              <p className="ml-4">
+                              <h5 className="text-sm sm:text-xl">
+                                {item.product.title}
+                              </h5>
+                              <p className="sm:ml-4 sm:text-xl">
                                 ${discountedPrice(item.product)}
                               </p>
                             </div>
-                            <p className="mt-1 text-sm text-gray-500">
+                            <p className="sm:mt-1 text-sm text-gray-500">
                               {item.product.brand}
                             </p>
                           </div>
                           <div className="flex flex-1 items-end justify-between text-sm">
-                            <div className="text-gray-500">
+                            <div className="mt-2">
                               <label
                                 htmlFor="quantity"
-                                className="inline mr-5 text-sm font-medium leading-6 text-gray-900"
+                                className="inblock mr-2 text-sm font-medium leading-6 text-gray-900"
                               >
-                                Qty
+                                Qty.
                               </label>
                               <select
                                 onChange={(e) => handleQuantity(e, item)}
@@ -437,13 +439,13 @@ function Checkout() {
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 px-2 py-6 sm:px-2">
-                <div className="flex justify-between my-2 text-base font-medium text-gray-900">
+              <div className="border-t border-gray-200 bg-black-700 px-4 py-6 sm:px-6">
+                <div className="flex justify-between text-base font-medium text-gray-900">
                   <p>Subtotal</p>
                   <p>$ {totalAmount}</p>
                 </div>
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
-                  <p>Total items in Cart</p>
+                  <p>Total Items in Cart</p>
                   <p>{totalItems} items</p>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">
@@ -460,12 +462,12 @@ function Checkout() {
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <p>
                     or
-                    <Link to="/">
+                    <Link to={"/"}>
                       <button
                         type="button"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
-                        Continue Shopping
+                        &nbsp;Continue Shopping
                         <span aria-hidden="true"> &rarr;</span>
                       </button>
                     </Link>

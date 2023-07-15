@@ -28,7 +28,9 @@ export default function Login() {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Log in to your account
+            <span className="text-xl font-serif sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
+              Log in to Nimadicart
+            </span>
           </h2>
         </div>
 
@@ -100,7 +102,9 @@ export default function Login() {
                   <p className="text-red-500">{errors.password.message}</p>
                 )}
               </div>
-              {error && <p className="text-red-500">{error.message || error}</p>}
+              {error && (
+                <p className="text-red-500">{error.message || error}</p>
+              )}
             </div>
 
             <div>

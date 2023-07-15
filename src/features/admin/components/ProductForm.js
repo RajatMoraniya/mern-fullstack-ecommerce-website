@@ -62,6 +62,7 @@ function ProductForm() {
   return (
     <>
       <form
+      className="mx-auto w-full sm:w-auto"
         noValidate
         onSubmit={handleSubmit((data) => {
           console.log(data);
@@ -96,8 +97,8 @@ function ProductForm() {
           }
         })}
       >
-        <div className="space-y-12 bg-white p-12">
-          <div className="border-b border-gray-900/10 pb-12">
+        <div className="space-y-12 bg-white p-5 sm:p-12">
+          <div className="border-b border-gray-900/10 sm:pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
               Add Product
             </h2>

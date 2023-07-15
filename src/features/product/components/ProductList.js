@@ -86,6 +86,16 @@ export default function ProductList() {
     setPage(page);
   };
 
+  const handleAllProducts = () => {
+    setFilter({});
+    setSort({});
+    setPage(1);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
@@ -116,7 +126,10 @@ export default function ProductList() {
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-5">
-              <h1 className="text-xl font-bold tracking-tight text-gray-900">
+              <h1
+                onClick={handleAllProducts}
+                className="text-xl font-bold tracking-tight text-gray-900 hover:text-gray-500 cursor-pointer"
+              >
                 All Products
               </h1>
 

@@ -38,7 +38,7 @@ function Navbar({ children }) {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                   <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0">
+                      <div className="flex-shrink-0 hover:scale-110">
                         <Link to="/">
                           <img
                             className="h-8 w-8"
@@ -222,8 +222,8 @@ function Navbar({ children }) {
 
           <header className="bg-white shadow">
             <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
-                Bazar - India's Shopping Zone
+              <h1 className="text-xl cursor-default hover:scale-y-110 font-serif sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900 inline">
+                Nimadicart <span className="text-sm">...अपनों की दुकान"</span>
               </h1>
             </div>
           </header>

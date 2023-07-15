@@ -55,22 +55,25 @@ export default function UserProfile() {
 
   return (
     <div>
-      <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl mx-2 text-left font-bold tracking-tight text-gray-900">
+        My Profile
+      </h1>
+      <div className="mx-auto mt-5 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-          <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
+          <h1 className="text-xl lg:text-4xl sm:my-3 lg:my-5 font-bold tracking-tight text-gray-900">
             Name: {userInfo.name ? userInfo.name : "New userInfo"}
           </h1>
-          <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
+          <h3 className="sm:text-xl sm:my-5 font-bold tracking-tight text-red-900">
             email address : {userInfo.email}
           </h3>
           {userInfo.role === "admin" && (
-            <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
+            <h3 className="sm:text-xl sm:my-5 font-bold tracking-tight text-red-900">
               role : {userInfo.role}
             </h3>
           )}
         </div>
 
-        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+        <div className="border-t border-gray-200 px-4 sm:py-6 sm:px-6">
           <button
             onClick={(e) => {
               setShowAddAddressForm(true);
@@ -81,9 +84,11 @@ export default function UserProfile() {
           >
             Add New Address
           </button>
+
+          {/* Add Address Form */}
           {showAddAddressForm ? (
             <form
-              className="bg-white px-5 py-12 mt-12"
+              className="bg-white sm:px-5 sm:py-8"
               noValidate
               onSubmit={handleSubmit((data) => {
                 console.log(data);
@@ -92,8 +97,8 @@ export default function UserProfile() {
               })}
             >
               <div className="space-y-12">
-                <div className="border-b border-gray-900/10 pb-12">
-                  <h2 className="text-2xl font-semibold leading-7 text-gray-900">
+                <div className="border-b border-gray-900/10 sm:pb-12">
+                  <h2 className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900">
                     Add Personal Information
                   </h2>
                   <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -262,7 +267,7 @@ export default function UserProfile() {
                   </div>
                 </div>
 
-                <div className="mt-6 flex items-center justify-end gap-x-6">
+                <div className="mt-8 flex items-center justify-end gap-x-6">
                   <button
                     onClick={() => {
                       setShowAddAddressForm(false);
@@ -288,7 +293,7 @@ export default function UserProfile() {
             <div key={index}>
               {selectedEditIndex === index ? (
                 <form
-                  className="bg-white px-5 py-12 mt-12"
+                  className="bg-white sm:px-5 py-5 sm:py-12 sm:mt-12"
                   noValidate
                   onSubmit={handleSubmit((data) => {
                     console.log(data);
@@ -297,8 +302,8 @@ export default function UserProfile() {
                   })}
                 >
                   <div className="space-y-12">
-                    <div className="border-b border-gray-900/10 pb-12">
-                      <h2 className="text-2xl font-semibold leading-7 text-gray-900">
+                    <div className="border-b border-gray-900/10 sm:pb-12">
+                      <h2 className="text-xl sm:text-2xl font-semibold leading-7 text-gray-900">
                         Edit Personal Information
                       </h2>
                       <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -495,6 +500,8 @@ export default function UserProfile() {
                   </div>
                 </form>
               ) : null}
+
+              {/* Adress and Edit Remove Btn */}
               <div className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200">
                 <div className="flex gap-x-4">
                   <div className="min-w-0 flex-auto">
@@ -509,7 +516,7 @@ export default function UserProfile() {
                     </p>
                   </div>
                 </div>
-                <div className="hidden sm:flex sm:flex-col sm:items-end">
+                <div className="sm:flex sm:flex-col sm:items-end">
                   <p className="text-sm leading-6 text-gray-900">
                     Phone: {address.phone}
                   </p>
@@ -517,24 +524,26 @@ export default function UserProfile() {
                     {address.city}
                   </p>
                 </div>
-                <div className="hidden sm:flex sm:flex-col sm:items-end">
-                  <button
-                    onClick={(e) => handleEditForm(index)}
-                    type="button"
-                    className="font-medium text-indigo-600 hover:text-indigo-500"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={(e) => handleRemove(e, index)}
-                    type="button"
-                    className="font-medium text-indigo-600 hover:text-indigo-500"
-                  >
-                    Remove
-                  </button>
-                </div>
               </div>
+              <div className="px-2 flex justify-end">
+                <button
+                  onClick={(e) => handleEditForm(index)}
+                  type="button"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={(e) => handleRemove(e, index)}
+                  type="button"
+                  className="ps-2 font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  Remove
+                </button>
+              </div>
+              
             </div>
+
           ))}
         </div>
       </div>

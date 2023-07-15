@@ -75,14 +75,17 @@ function AdminOrders() {
 
   return (
     <div className="overflow-x-auto">
+      <h1 className="p-2 text-2xl sm:text-3xl md:text-4xl mx-2 text-left font-bold tracking-tight text-gray-900">
+        Admin Panel ~ Manage Orders
+      </h1>
       <div className="bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
         <div className="w-full">
-          <div className="bg-white shadow-md rounded my-6">
+          <div className="bg-white shadow-md rounded my-6 overflow-x-auto">
             <table className="w-full table-auto">
               <thead>
                 <tr className="bg-gray-200 text-gray-800 uppercase text-sm leading-normal">
                   <th
-                    className="py-3 px-6 text-center cursor-pointer"
+                    className="py-3 px-1 sm:px-6 text-center cursor-pointer"
                     onClick={(e) =>
                       handleSort({
                         sort: "id",
@@ -93,9 +96,9 @@ function AdminOrders() {
                     Order#{" "}
                     {sort._sort === "id" &&
                       (sort._order === "asc" ? (
-                        <ArrowUpIcon className="w-4 h-4 inline"></ArrowUpIcon>
+                        <ArrowUpIcon className="hidden w-4 h-4 sm:inline"></ArrowUpIcon>
                       ) : (
-                        <ArrowDownIcon className="w-4 h-4 inline"></ArrowDownIcon>
+                        <ArrowDownIcon className="hidden w-4 h-4 inline:inline"></ArrowDownIcon>
                       ))}
                   </th>
                   <th className="py-3 px-6 text-center">Items</th>
@@ -117,9 +120,9 @@ function AdminOrders() {
                       ))}
                   </th>
                   <th className="py-3 px-6 text-center">Shipping Address</th>
-                  <th className="py-3 px-6 text-center">Order Status</th>
-                  <th className="py-3 px-6 text-center">Payment</th>
+                  <th className="py-3 px-6 text-center">Payment Mode</th>
                   <th className="py-3 px-6 text-center">Payment Status</th>
+                  <th className="py-3 px-6 text-center">Order Status</th>
                   <th className="py-3 px-6 text-center">Actions</th>
                 </tr>
               </thead>
@@ -127,33 +130,31 @@ function AdminOrders() {
                 {orders.map((order) => (
                   <tr
                     key={order.id}
-                    className="border-b border-gray-200 hover:bg-gray-100"
+                    className="border-b border-gray-200 hover:bg-gray-300"
                   >
-                    <td className="py-3 px-6 text-center whitespace-nowrap">
+                    <td className="py-3 px-1 sm:px-6 text-center whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="mr-2"></div>
+                        <div className="sm:mr-2"></div>
                         <span className="font-medium">{order.id}</span>
                       </div>
                     </td>
                     <td className="py-3 px-6 text-center">
                       {order.items.map((item, index) => (
                         <div key={index} className="flex items-center">
-                          <div className="mr-2">
-                            <img
-                              alt="/*/"
-                              className="w-6 h-6 rounded-full"
-                              src={item.product.thumbnail}
-                            />
-                          </div>
+                          <div className="mr-2"></div>
                           <span>
-                            {item.product.title} - #{item.quantity} - $
+                            --{" "}
+                            <span className="font-medium">
+                              {item.product.title}
+                            </span>{" "}
+                            | Qty-{item.quantity} | $
                             {discountedPrice(item.product)}
                           </span>
                         </div>
                       ))}
                     </td>
                     <td className="py-3 px-6 text-center">
-                      <div className="flex items-center justify-center">
+                      <div className="flex items-center font-medium justify-center">
                         ${order.totalAmount}
                       </div>
                     </td>
@@ -179,11 +180,31 @@ function AdminOrders() {
                         </div>
                       </div>
                     </td>
+
+                    <td className="py-3 px-6 text-center">
+                      <div className="flex font-medium items-center justify-center">
+                        {order.paymentMethod}
+                      </div>
+                    </td>
                     <td className="py-3 px-6 text-center">
                       {order.id === editableOrderId ? (
-                        <select
-                          onChange={(e) => handleOrderStatus(e, order)}
+                        <select onChange={(e) => handlePaymentStatus(e, order)}>
+                          <option value="pending">Pending</option>
+                          <option value="received">received</option>
+                        </select>
+                      ) : (
+                        <span
+                          className={`${chooseColor(
+                            order.paymentStatus
+                          )} py-1 px-3 rounded-full text-xs`}
                         >
+                          {order.paymentStatus}
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-3 px-6 text-center">
+                      {order.id === editableOrderId ? (
+                        <select onChange={(e) => handleOrderStatus(e, order)}>
                           <option value="pending">Pending</option>
                           <option value="dispatched">Dispatched</option>
                           <option value="delivered">Delivered</option>
@@ -196,29 +217,6 @@ function AdminOrders() {
                           )} py-1 px-3 rounded-full text-xs`}
                         >
                           {order.status}
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3 px-6 text-center">
-                      <div className="flex items-center justify-center">
-                        {order.paymentMethod}
-                      </div>
-                    </td>
-                    <td className="py-3 px-6 text-center">
-                      {order.id === editableOrderId ? (
-                        <select
-                          onChange={(e) => handlePaymentStatus(e, order)}
-                        >
-                          <option value="pending">Pending</option>
-                          <option value="received">received</option>
-                        </select>
-                      ) : (
-                        <span
-                          className={`${chooseColor(
-                            order.paymentStatus
-                          )} py-1 px-3 rounded-full text-xs`}
-                        >
-                          {order.paymentStatus}
                         </span>
                       )}
                     </td>

@@ -7,8 +7,12 @@ import {
   selectProductListStatus,
   selectProductById,
 } from "../productSlice";
-import { Link, useParams } from "react-router-dom";
-import { addToCartAsync, selectCartItems } from "../../cart/cartSlice";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import {
+  addToCartAsync,
+  selectCartItems,
+  selectCartStatus,
+} from "../../cart/cartSlice";
 import { discountedPrice } from "../../../app/constaints";
 import { useAlert } from "react-alert";
 import { Grid } from "react-loader-spinner";
@@ -44,6 +48,7 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
   const product = useSelector(selectProductById);
   const items = useSelector(selectCartItems);
+  const cartStatus = useSelector(selectCartStatus);
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const params = useParams();
@@ -51,8 +56,21 @@ export default function ProductDetail() {
   const status = useSelector(selectProductListStatus);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     dispatch(fetchProductByIdAsync(params.id));
   }, [dispatch, params.id]);
+
+  const navigate = useNavigate();
+
+  const handleBuyNow = (e) => {
+    handleAddToCart(e);
+    if (cartStatus === "idle") {
+      navigate("/carts");
+    }
+  };
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -295,13 +313,24 @@ export default function ProductDetail() {
                     Coming Soon... Check Other Products
                   </Link>
                 ) : (
-                  <button
-                    onClick={(e) => handleAddToCart(e)}
-                    type="submit"
-                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    Add to Cart
-                  </button>
+                  <div className="flex gap-x-2">
+                    <button
+                      onClick={(e) => handleBuyNow(e)}
+                      type="submit"
+                      disabled={cartStatus==="loading"}
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                      Buy Now
+                    </button>
+                    <button
+                      onClick={(e) => handleAddToCart(e)}
+                      type="submit"
+                      disabled={cartStatus==="loading"}
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 )}
               </form>
             </div>

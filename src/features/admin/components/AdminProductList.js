@@ -109,6 +109,9 @@ export default function AdminProductList() {
 
   return (
     <div className="bg-white">
+      <h1 className="p-2 text-2xl sm:text-3xl md:text-4xl mx-2 text-left font-bold tracking-tight text-gray-900">
+        Admin Panel ~ Manage Products
+      </h1>
       <div>
         <MobileFilter
           handleFilter={handleFilter}
@@ -117,9 +120,9 @@ export default function AdminProductList() {
           filters={filters}
         ></MobileFilter>
 
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+        <main className="mx-auto max-w-7xl px-1 sm:px-6 lg:px-8">
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-10 sm:pt-20">
+            <h1 className="sm:text-2xl px-2 font-bold tracking-tight text-gray-900">
               All Products
             </h1>
 

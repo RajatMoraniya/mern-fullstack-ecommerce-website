@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteCartAsync,
@@ -36,12 +36,16 @@ export default function Cart() {
     dispatch(deleteCartAsync(item));
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
-      {!items.length && cartLoaded && (
+      {status==="idle" && cartLoaded && !items.length && (
         <Navigate to="/" replace={true}></Navigate>
       )}
-      <div className="mx-auto bg-white max-w-7xl sm:px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto bg-white max-w-7xl sm:px-4 md:px-6 lg:px-8">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <h1 className="text-2xl sm:text-3xl md:text-4xl my-5 text-left font-bold tracking-tight text-gray-900">
             Cart

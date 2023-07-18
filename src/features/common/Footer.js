@@ -4,7 +4,7 @@ function Footer() {
       <div className="bg-gray-900 p-4">
         <div className="max-w-2xl mx-auto text-white py-10">
           <div className="text-center">
-            <h3 className="text-xl mb-3"> Download our Nimadicart App </h3>
+            <h3 className="text-xl mb-3"> Download our Nimart App </h3>
             <p>
               {" "}
               Buy what you want from{" "}
@@ -36,7 +36,7 @@ function Footer() {
           <div className="flex flex-col md:flex-row md:justify-between items-center text-sm text-gray-400">
             <p className="order-2 md:order-1 mt-8 md:mt-0">
               {" "}
-              © Nimadicart, 2023.{" "}
+              © Nimart, 2023.{" "}
             </p>
             <div className="order-1 md:order-2">
               <span className="px-2">About us</span>

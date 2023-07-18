@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectError, selectLoggedInUserToken } from "../authSlice";
+import { selectAuthError, selectLoggedInUserToken } from "../authSlice";
 import { Link, Navigate } from "react-router-dom";
 import { loginUserAsync } from "../authSlice";
 import { useForm } from "react-hook-form";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const error = useSelector(selectError);
+  const error = useSelector(selectAuthError);
   const user = useSelector(selectLoggedInUserToken);
   const {
     register,
@@ -29,7 +29,7 @@ export default function Login() {
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             <span className="text-xl font-serif sm:text-2xl lg:text-3xl font-bold tracking-tight text-gray-900">
-              Log in to Nimadicart
+              Log in to Nimart
             </span>
           </h2>
         </div>

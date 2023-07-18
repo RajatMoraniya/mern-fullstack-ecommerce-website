@@ -11,10 +11,16 @@ export function createUser(userData) {
   });
 }
 
-export function signOut(userId) {
-  return new Promise(async (resolve) => {
-    // TODO: on server we will remove user session info
-    resolve({ data: "success" });
+export function signOut() {
+  return new Promise(async (resolve, reject) => {
+    const response = await fetch("/auth/signOut");
+    if (response.ok) {
+      const data = await response.json();
+      resolve({ data });
+    } else {
+      const err = await response.text();  
+      reject(err);
+    }
   });
 }
 
@@ -43,6 +49,48 @@ export function checkAuth() {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch("/auth/check");
+      if (response.ok) {
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const err = await response.text();
+        reject(err);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export function resetPasswordRequest(email) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch("/auth/reset-password-request", {
+        method: "POST",
+        body: JSON.stringify({ email }),
+        headers: { "content-type": "application/json" },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const err = await response.text();
+        reject(err);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export function resetPassword(data) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch("/auth/reset-password", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "content-type": "application/json" },
+      });
       if (response.ok) {
         const data = await response.json();
         resolve({ data });

@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { resetPasswordRequestAsync, selectUserMailSent } from "../authSlice";
 
 export default function ForgotPassword() {
+  const dispatch = useDispatch();
+  const mailSent = useSelector(selectUserMailSent);
   const {
     register,
     handleSubmit,
@@ -17,7 +21,7 @@ export default function ForgotPassword() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
-            src="logo512.png"
+            src="bazar.png"
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -30,7 +34,7 @@ export default function ForgotPassword() {
             noValidate
             onSubmit={handleSubmit((data) => {
               console.log(data);
-              // TODO : implementation on backend with email
+              dispatch(resetPasswordRequestAsync(data.email))
             })}
             className="space-y-6"
           >
@@ -56,6 +60,9 @@ export default function ForgotPassword() {
                 />
                 {errors.email && (
                   <p className="text-red-500">{errors.email.message}</p>
+                )}
+                {mailSent && (
+                  <p className="text-green-500">Reset Password Link Send Check Inbox</p>
                 )}
               </div>
             </div>

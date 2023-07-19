@@ -15,10 +15,9 @@ export function signOut() {
   return new Promise(async (resolve, reject) => {
     const response = await fetch("/auth/signOut");
     if (response.ok) {
-      const data = await response.json();
-      resolve({ data });
+      resolve({ data: "success" });
     } else {
-      const err = await response.text();  
+      const err = await response.text();
       reject(err);
     }
   });

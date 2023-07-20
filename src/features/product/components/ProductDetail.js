@@ -13,7 +13,7 @@ import {
   selectCartItems,
   selectCartStatus,
 } from "../../cart/cartSlice";
-import { discountedPrice } from "../../../app/constaints";
+
 import { useAlert } from "react-alert";
 import { Grid } from "react-loader-spinner";
 
@@ -86,9 +86,8 @@ export default function ProductDetail() {
       if (selectedSize) {
         newItem.size = selectedSize;
       }
-      dispatch(addToCartAsync(newItem));
-      // TODO: it will be based on server response of backend
-      alert.success("Item added to Cart");
+      console.log({ newItem });
+      dispatch(addToCartAsync({ newItem, alert }));
     } else {
       alert.error("Item Already added");
     }
@@ -162,7 +161,7 @@ export default function ProductDetail() {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
               <p className="text-2xl sm:text-3xl tracking-tight text-gray-900">
-                ${discountedPrice(product)}
+                ${product.discountPrice}
               </p>
               <p className="sm:text-xl line-through tracking-tight text-gray-600">
                 ${product.price}

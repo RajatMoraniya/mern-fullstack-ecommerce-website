@@ -101,7 +101,7 @@ function ProductForm() {
   const handleDelete = () => {
     const product = { ...selectedProduct };
     product.deleted = true;
-    dispatch(updateProductAsync(product));
+    dispatch(updateProductAsync({ product, alert }));
   };
 
   return (
@@ -143,14 +143,11 @@ function ProductForm() {
           if (params.id) {
             product.id = params.id;
             product.rating = selectedProduct.rating || 0;
-            dispatch(updateProductAsync(product));
-            alert.success("Product Updated");
-
+            dispatch(updateProductAsync({ product, alert }));
+            //alert pop up inside dipatch function
             reset();
           } else {
-            dispatch(createProductAsync(product));
-            alert.success("Product Created");
-            // TODO: these alerts should check if API failed
+            dispatch(createProductAsync({ product, alert }));
             reset();
           }
         })}

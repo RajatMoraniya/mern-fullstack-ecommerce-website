@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constaints";
+import { ITEMS_PER_PAGE } from "../../../app/constaints";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllOrdersAsync,
@@ -9,7 +9,6 @@ import {
 } from "../../order/orderSlice";
 import {
   PencilIcon,
-  EyeIcon,
   ArrowUpIcon,
   ArrowDownIcon,
 } from "@heroicons/react/24/outline";
@@ -187,7 +186,7 @@ function AdminOrders() {
                               {item.product.title}
                             </span>{" "}
                             | Qty-{item.quantity} | $
-                            {discountedPrice(item.product)}
+                            {item.product.discountPrice}
                           </span>
                         </div>
                       ))}

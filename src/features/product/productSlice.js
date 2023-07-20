@@ -56,16 +56,18 @@ export const fetchProductsByFiltersAsync = createAsyncThunk(
 
 export const createProductAsync = createAsyncThunk(
   "product/create",
-  async (product) => {
+  async ({ product, alert }) => {
     const response = await createProduct(product);
+    alert.success("Product Created");
     return response.data;
   }
 );
 
 export const updateProductAsync = createAsyncThunk(
   "product/update",
-  async (update) => {
-    const response = await updateProduct(update);
+  async ({ product, alert }) => {
+    const response = await updateProduct(product);
+    alert.success("Product Updated");
     return response.data;
   }
 );
@@ -138,6 +140,5 @@ export const selectBrands = (state) => state.product.brands;
 export const selectTotalItems = (state) => state.product.totalItems;
 export const selectProductById = (state) => state.product.selectedProduct;
 export const selectProductListStatus = (state) => state.product.status;
-
 
 export default productSlice.reducer;

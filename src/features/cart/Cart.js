@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteCartAsync,
@@ -8,7 +8,6 @@ import {
   updateCartAsync,
 } from "./cartSlice";
 import { Link, Navigate } from "react-router-dom";
-import { discountedPrice } from "../../app/constaints";
 import { Grid } from "react-loader-spinner";
 import Modal from "../common/Modal";
 
@@ -17,8 +16,9 @@ export default function Cart() {
   const status = useSelector(selectCartStatus);
   const cartLoaded = useSelector(selectCartLoaded);
 
+  console.log(items);
   const totalAmount = items.reduce(
-    (amount, item) => discountedPrice(item.product) * item.quantity + amount,
+    (amount, item) => item.product.discountPrice * item.quantity + amount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
@@ -37,12 +37,12 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
-      {status==="idle" && cartLoaded && !items.length && (
+      {status === "idle" && cartLoaded && !items.length && (
         <Navigate to="/" replace={true}></Navigate>
       )}
       <div className="mx-auto bg-white max-w-7xl sm:px-4 md:px-6 lg:px-8">
@@ -83,7 +83,7 @@ export default function Cart() {
                           {item.product.title}
                         </h5>
                         <p className="sm:ml-4 sm:text-xl">
-                          ${discountedPrice(item.product)}
+                          ${item.product.discountPrice}
                         </p>
                       </div>
                       <p className="sm:mt-1 text-sm text-gray-500">
@@ -165,7 +165,7 @@ export default function Cart() {
           </div>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
             <p>
-              or 
+              or
               <Link to={"/"}>
                 <button
                   type="button"

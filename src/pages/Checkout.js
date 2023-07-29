@@ -105,8 +105,8 @@ function Checkout() {
         />
       ) : (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
-            <div className="lg:col-span-3">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-12">
+            <div className="lg:col-span-8">
               <form
                 className="w-full sm:w-auto bg-white px-3 sm:px-5 py-5 sm:py-12 mt-8 sm:mt-12"
                 noValidate
@@ -292,41 +292,48 @@ function Checkout() {
                       Choose from Existing addresses
                     </p>
                     <ul>
-                      {user.addresses.map((address, index) => (
-                        <li
-                          key={index}
-                          className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200"
-                        >
-                          <div className="flex gap-x-4">
+                      {user &&
+                        user.addresses &&
+                        user.addresses.map((address, index) => (
+                          <li
+                            key={index}
+                            className="gap-x-6 px-1 sm:px-6 py-5 border-solid border-2 border-gray-200"
+                          >
                             <input
                               onChange={handleAddress}
                               name="address"
                               type="radio"
+                              id={index}
                               value={index}
                               className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                             />
-                            <div className="min-w-0 flex-auto">
-                              <p className="text-sm font-semibold leading-6 text-gray-900">
-                                {address.name}
-                              </p>
-                              <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                                {address.street}
-                              </p>
-                              <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                                {address.pinCode}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="sm:flex sm:flex-col sm:items-end">
-                            <p className="text-sm leading-6 text-gray-900">
-                              Phone: {address.phone}
-                            </p>
-                            <p className="text-sm leading-6 text-gray-500">
-                              {address.city}
-                            </p>
-                          </div>
-                        </li>
-                      ))}
+                            <label htmlFor={index}>
+                              <div className="gap-x-6 px-2 sm:px-8">
+                                <div className="flex gap-x-4">
+                                  <div className="min-w-0 sm:flex-auto">
+                                    <p className="text-sm font-semibold leading-6 text-gray-900">
+                                      {address.name}
+                                    </p>
+                                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                      {address.street}
+                                    </p>
+                                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                                      {address.pinCode}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div className="">
+                                  <p className="text-xs sm:text-sm leading-6 text-gray-900">
+                                    Phone: {address.phone}
+                                  </p>
+                                  <p className="text-sm leading-6 text-gray-500">
+                                    {address.city}
+                                  </p>
+                                </div>
+                              </div>
+                            </label>
+                          </li>
+                        ))}
                     </ul>
 
                     <div className="mt-10 space-y-10">
@@ -379,7 +386,7 @@ function Checkout() {
                 </div>
               </form>
             </div>
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-4 lg:fixed top-10 md:right-5 lg:right-10">
               <div className="mx-auto bg-white max-w-7xl sm:px-4 sm:px-6 lg:px-8">
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <h1 className="text-2xl sm:text-3xl md:text-4xl my-5 text-left font-bold tracking-tight text-gray-900">

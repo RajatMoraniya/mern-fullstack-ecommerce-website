@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../cart/cartSlice";
 import { selectUserInfo } from "../user/userSlice";
+import Footer from "../common/Footer";
 
 const navigation = [
   { name: "Products", link: "/", user: true },
@@ -234,6 +235,7 @@ function Navbar({ children }) {
           </main>
         </div>
       )}
+      <Footer />
     </>
   );
 }

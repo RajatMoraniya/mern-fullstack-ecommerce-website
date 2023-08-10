@@ -23,6 +23,7 @@ export default function Login() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
+            loading="lazy"
             className="mx-auto h-14 w-14"
             src="logo512.png"
             alt="Your Company"

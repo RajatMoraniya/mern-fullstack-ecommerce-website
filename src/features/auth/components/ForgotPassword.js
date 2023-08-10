@@ -20,6 +20,7 @@ export default function ForgotPassword() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
+            loading="lazy"
             className="mx-auto h-14 w-14"
             src="logo512.png"
             alt="Your Company"
@@ -34,7 +35,7 @@ export default function ForgotPassword() {
             noValidate
             onSubmit={handleSubmit((data) => {
               console.log(data);
-              dispatch(resetPasswordRequestAsync(data.email))
+              dispatch(resetPasswordRequestAsync(data.email));
             })}
             className="space-y-6"
           >
@@ -62,7 +63,9 @@ export default function ForgotPassword() {
                   <p className="text-red-500">{errors.email.message}</p>
                 )}
                 {mailSent && (
-                  <p className="text-green-500">Reset Password Link Send Check Inbox</p>
+                  <p className="text-green-500">
+                    Reset Password Link Send Check Inbox
+                  </p>
                 )}
               </div>
             </div>

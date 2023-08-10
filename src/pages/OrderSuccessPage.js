@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { resetCartAsync } from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import { resetOrder, resetcurrentOrder } from "../features/order/orderSlice";
+import { Helmet } from "react-helmet";
 
 function OrderSuccessPage() {
   const params = useParams();
@@ -22,6 +23,17 @@ function OrderSuccessPage() {
     <>
       {!params.id && <Navigate to="/" replace={true}></Navigate>}
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <Helmet>
+          <title>Order Success - Nimart</title>
+          <meta
+            name="keywords"
+            content="Online Shopping, Fashion, Electronics, Home Decor, Beauty Products, Lifestyle, Deals and Discounts, Best Prices, Secure Checkout, Fast Delivery, Customer Reviews, Brands, Accessories, Gifts, Sustainable Products, Sale"
+          />
+          <meta
+            name="description"
+            content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more. Enjoy secure online shopping, fast delivery, and exceptional customer service. Find everything you need in one place."
+          />
+        </Helmet>
         <div className="text-center">
           <p className="text-base font-semibold text-indigo-600">
             Order Successfully Placed

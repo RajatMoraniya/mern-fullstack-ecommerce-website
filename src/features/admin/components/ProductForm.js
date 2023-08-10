@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Modal from "../../common/Modal";
 import { useAlert } from "react-alert";
+import { Helmet } from "react-helmet";
 
 function ProductForm() {
   const {
@@ -154,8 +155,19 @@ function ProductForm() {
       >
         <div className="space-y-12 bg-white p-5 sm:p-12">
           <div className="border-b border-gray-900/10 sm:pb-12">
+            <Helmet>
+              <title>{selectedProduct ? "Edit Product" : "Add Product"} - Admin</title>
+              <meta
+                name="keywords"
+                content="Online Shopping, Fashion, Electronics, Home Decor, Beauty Products, Lifestyle, Deals and Discounts, Best Prices, Secure Checkout, Fast Delivery, Customer Reviews, Brands, Accessories, Gifts, Sustainable Products, Sale"
+              />
+              <meta
+                name="description"
+                content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more. Enjoy secure online shopping, fast delivery, and exceptional customer service. Find everything you need in one place."
+              />
+            </Helmet>
             <h2 className="text-base font-semibold leading-7 text-gray-900">
-              Add Product
+              {selectedProduct ? "Edit Product" : "Add Product"}
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

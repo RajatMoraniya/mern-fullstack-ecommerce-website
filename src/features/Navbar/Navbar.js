@@ -42,6 +42,7 @@ function Navbar({ children }) {
                       <div className="flex-shrink-0 hover:scale-110">
                         <Link to="/">
                           <img
+                            loading="lazy"
                             className="h-8 w-8"
                             src="/logo512.png"
                             alt="Logo"
@@ -96,6 +97,7 @@ function Navbar({ children }) {
                             <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                               <span className="sr-only">Open user menu</span>
                               <img
+                                loading="lazy"
                                 className="h-8 w-8 rounded-full"
                                 src={userInfo.imageUrl}
                                 alt=""
@@ -176,6 +178,7 @@ function Navbar({ children }) {
                     <div className="flex items-center px-5">
                       <div className="flex-shrink-0">
                         <img
+                          loading="lazy"
                           className="h-10 w-10 rounded-full"
                           src={userInfo.imageUrl}
                           alt=""
@@ -235,7 +238,7 @@ function Navbar({ children }) {
           </main>
         </div>
       )}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

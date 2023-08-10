@@ -16,6 +16,7 @@ import {
 import { selectUserInfo } from "../features/user/userSlice";
 import { useAlert } from "react-alert";
 import { Grid } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -82,6 +83,17 @@ function Checkout() {
 
   return (
     <>
+      <Helmet>
+        <title>Checkout - Nimart</title>
+        <meta
+          name="keywords"
+          content="Online Shopping, Fashion, Electronics, Home Decor, Beauty Products, Lifestyle, Deals and Discounts, Best Prices, Secure Checkout, Fast Delivery, Customer Reviews, Brands, Accessories, Gifts, Sustainable Products, Sale"
+        />
+        <meta
+          name="description"
+          content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more. Enjoy secure online shopping, fast delivery, and exceptional customer service. Find everything you need in one place."
+        />
+      </Helmet>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
       {currentOrder && currentOrder.paymentMethod === "cash" && (
         <Navigate
@@ -399,6 +411,7 @@ function Checkout() {
                           <Link to={`/product-detail/${item.product.id}`}>
                             <div className="h-10 w-10 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                               <img
+                                loading="lazy"
                                 src={item.product.thumbnail}
                                 alt={item.product.title}
                                 className="h-full w-full object-cover object-center"

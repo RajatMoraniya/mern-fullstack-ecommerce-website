@@ -16,6 +16,7 @@ import {
 
 import { useAlert } from "react-alert";
 import { Grid } from "react-loader-spinner";
+import { Helmet } from "react-helmet";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -109,6 +110,17 @@ export default function ProductDetail() {
       ) : null}
       {product && (
         <div className="pt-4">
+          <Helmet>
+            <title>
+              {product.title} - {product.brand}
+            </title>
+            <meta
+              name="keywords"
+              content="Online Shopping, Fashion, Electronics, Home Decor, Beauty Products, Lifestyle, Deals and Discounts, Best Prices, Secure Checkout, Fast Delivery, Customer Reviews, Brands, Accessories, Gifts, Sustainable Products, Sale"
+            />
+            <meta name="description" content={product.description} />
+          </Helmet>
+
           <div className="mx-2 px-4">
             <h1 className="sm:text-xl font-bold tracking-tight text-gray-900 md:text-3xl">
               {product.title}
@@ -119,6 +131,7 @@ export default function ProductDetail() {
           <div className="mx-2 sm:mx-auto mt-4 sm:mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
             <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
               <img
+                loading="lazy"
                 src={product.images[0]}
                 alt={product.title}
                 className="h-full w-full object-cover object-center"
@@ -127,6 +140,7 @@ export default function ProductDetail() {
             <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
               <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                 <img
+                  loading="lazy"
                   src={product.images[1]}
                   alt={product.title}
                   className="h-full w-full object-cover object-center"
@@ -134,6 +148,7 @@ export default function ProductDetail() {
               </div>
               <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                 <img
+                  loading="lazy"
                   src={product.images[2]}
                   alt={product.title}
                   className="h-full w-full object-cover object-center"
@@ -142,6 +157,7 @@ export default function ProductDetail() {
             </div>
             <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
               <img
+                loading="lazy"
                 src={product.images[3]}
                 alt={product.title}
                 className="h-full w-full object-cover object-center"

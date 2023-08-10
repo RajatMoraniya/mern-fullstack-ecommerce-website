@@ -54,12 +54,12 @@ export default function ProductList() {
     {
       id: "brand",
       name: "Brands",
-      options: brands,
+      options: JSON.parse(JSON.stringify(brands)),
     },
     {
       id: "category",
       name: "Category",
-      options: categories,
+      options: JSON.parse(JSON.stringify(categories)),
     },
   ];
   const [filter, setFilter] = useState({});
@@ -327,9 +327,10 @@ function MobileFilter({
                                   name={`${section.id}[]`}
                                   defaultValue={option.value}
                                   type="checkbox"
-                                  onChange={(e) =>
-                                    handleFilter(e, section, option)
-                                  }
+                                  onChange={(e) => {
+                                    handleFilter(e, section, option);
+                                    option.checked = !option.checked;
+                                  }}
                                   defaultChecked={option.checked}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
@@ -436,6 +437,7 @@ function ProductGrid({ products, status }) {
                 <div className="group relative p-2 border-solid border-2 border-gray-200">
                   <div className="min-h-60 aspect-h-1 aspect-w-1 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
                     <img
+                      loading="lazy"
                       src={product.thumbnail}
                       alt={product.title}
                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"

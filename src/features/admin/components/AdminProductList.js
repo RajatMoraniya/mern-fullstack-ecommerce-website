@@ -25,6 +25,7 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import { ITEMS_PER_PAGE } from "../../../app/constaints";
+import { Helmet } from "react-helmet";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -119,6 +120,17 @@ export default function AdminProductList() {
 
   return (
     <div className="bg-white">
+      <Helmet>
+        <title>Admin Products</title>
+        <meta
+          name="keywords"
+          content="Online Shopping, Fashion, Electronics, Home Decor, Beauty Products, Lifestyle, Deals and Discounts, Best Prices, Secure Checkout, Fast Delivery, Customer Reviews, Brands, Accessories, Gifts, Sustainable Products, Sale"
+        />
+        <meta
+          name="description"
+          content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more. Enjoy secure online shopping, fast delivery, and exceptional customer service. Find everything you need in one place."
+        />
+      </Helmet>
       <h1 className="p-2 text-2xl sm:text-3xl md:text-4xl mx-2 text-left font-bold tracking-tight text-gray-900">
         Admin Panel ~ Manage Products
       </h1>
@@ -499,10 +511,11 @@ function ProductGrid({ products }) {
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
           {products.map((product) => (
             <div key={product.id}>
-              <Link to={`/product-detail/${product.id}`}>
+              <Link to={`/admin/product-detail/${product.id}`}>
                 <div className="group relative border-solid border-2 p-2 border-gray-200">
                   <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
                     <img
+                      loading="lazy"
                       src={product.thumbnail}
                       alt={product.title}
                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"

@@ -69,6 +69,7 @@ export default function Cart() {
                   <Link to={`/product-detail/${item.product.id}`}>
                     <div className="h-10 w-10 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
+                        loading="lazy"
                         src={item.product.thumbnail}
                         alt={item.product.title}
                         className="h-full w-full object-cover object-center"

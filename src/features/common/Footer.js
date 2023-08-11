@@ -1,7 +1,7 @@
-function Footer() {
+function Footer({bgColor}) {
   return (
     <>
-      <div className="bg-gray-900 p-4">
+      <div className="bg-[#10455f] p-3">
         <div className="max-w-2xl mx-auto text-white py-10">
           <div className="text-center">
             <h3 className="text-xl mb-3"> Download our Nimart App </h3>

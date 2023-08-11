@@ -157,7 +157,7 @@ function Checkout() {
                               required: "name is required",
                             })}
                             id="name"
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#10455F] sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -176,7 +176,7 @@ function Checkout() {
                               required: "email is required",
                             })}
                             type="email"
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#10455F] sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -195,7 +195,7 @@ function Checkout() {
                               required: "phone is required",
                             })}
                             type="tel"
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#10455F] sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -214,7 +214,7 @@ function Checkout() {
                               required: "street is required",
                             })}
                             id="street"
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#10455F] sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -234,7 +234,7 @@ function Checkout() {
                             })}
                             id="city"
                             autoComplete="address-level2"
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#10455F] sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -254,7 +254,7 @@ function Checkout() {
                             })}
                             id="state"
                             autoComplete="address-level1"
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#10455F] sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -273,7 +273,7 @@ function Checkout() {
                               required: "pinCode is required",
                             })}
                             id="pinCode"
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#10455F] sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -290,7 +290,7 @@ function Checkout() {
                     </button>
                     <button
                       type="submit"
-                      className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className="rounded-md bg-[#10455F] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#5a8faa] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10455F]"
                     >
                       Add Address
                     </button>
@@ -317,7 +317,7 @@ function Checkout() {
                               type="radio"
                               id={index}
                               value={index}
-                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                              className="h-4 w-4 border-gray-300 text-[#10455F] focus:ring-[#10455F]"
                             />
                             <label htmlFor={index}>
                               <div className="gap-x-6 px-2 sm:px-8">
@@ -365,7 +365,7 @@ function Checkout() {
                               value="cash"
                               type="radio"
                               checked={paymentMethod === "cash"}
-                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                              className="h-4 w-4 border-gray-300 text-[#10455F] focus:ring-[#10455F]"
                             />
                             <label
                               htmlFor="cash"
@@ -382,7 +382,7 @@ function Checkout() {
                               checked={paymentMethod === "card"}
                               value="card"
                               type="radio"
-                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                              className="h-4 w-4 border-gray-300 text-[#10455F] focus:ring-[#10455F]"
                             />
                             <label
                               htmlFor="card"
@@ -457,7 +457,7 @@ function Checkout() {
                                 <button
                                   onClick={(e) => handleRemove(e, item.id)}
                                   type="button"
-                                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                                  className="font-medium text-[#10455F] hover:text-[#5a8faa]"
                                 >
                                   Remove
                                 </button>
@@ -486,7 +486,7 @@ function Checkout() {
                     <button
                       disabled={createOrderStatus === "loading"}
                       onClick={handleOrder}
-                      className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                      className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-[#10455F] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#27566d]"
                     >
                       Order Now
                     </button>
@@ -497,7 +497,7 @@ function Checkout() {
                       <Link to={"/"}>
                         <button
                           type="button"
-                          className="font-medium text-indigo-600 hover:text-indigo-500"
+                          className="font-medium text-[#10455F] hover:text-[#5a8faa]"
                         >
                           &nbsp;Continue Shopping
                           <span aria-hidden="true"> &rarr;</span>

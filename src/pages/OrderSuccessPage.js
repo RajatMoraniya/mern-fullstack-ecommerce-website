@@ -35,7 +35,7 @@ function OrderSuccessPage() {
           />
         </Helmet>
         <div className="text-center">
-          <p className="text-base font-semibold text-indigo-600">
+          <p className="text-base font-semibold text-[#10455F]">
             Order Successfully Placed
           </p>
           <h1 className="mt-4 text-xl sm:text-3xl font-bold tracking-tight text-gray-900 lg:text-5xl">
@@ -47,7 +47,7 @@ function OrderSuccessPage() {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               to="/"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-[#10455F] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#5a8faa] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10455F]"
             >
               Go back Home
             </Link>

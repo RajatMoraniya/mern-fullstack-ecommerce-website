@@ -1,0 +1,19 @@
+/* .main-landing {
+  height: 10
+} */
+
+.landing-navbar {
+  border-bottom: 2px solid #dadada;
+  /* border: 2px solid black; */
+  height: 10%;
+}
+
+.landing-logo {
+  height: 3rem;
+  width: 3rem;
+}
+
+.landing-logo img {
+  height: 100%;
+  width: 100%;
+}

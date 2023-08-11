@@ -255,7 +255,7 @@ export default function AdminProductDetail() {
                       <h3 className="text-sm font-medium text-gray-900">
                         Size
                       </h3>
-                      <p className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                      <p className="text-sm font-medium text-[#10455F] hover:text-[#5a8faa]">
                         Size guide
                       </p>
                     </div>
@@ -279,7 +279,7 @@ export default function AdminProductDetail() {
                                 size.inStock
                                   ? "cursor-pointer bg-white text-gray-900 shadow-sm"
                                   : "cursor-not-allowed bg-gray-50 text-gray-200",
-                                active ? "ring-2 ring-indigo-500" : "",
+                                active ? "ring-2 ring-[#5a8faa]" : "",
                                 "group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6"
                               )
                             }
@@ -294,7 +294,7 @@ export default function AdminProductDetail() {
                                     className={classNames(
                                       active ? "border" : "border-2",
                                       checked
-                                        ? "border-indigo-500"
+                                        ? "border-[#5a8faa]"
                                         : "border-transparent",
                                       "pointer-events-none absolute -inset-px rounded-md"
                                     )}
@@ -333,7 +333,7 @@ export default function AdminProductDetail() {
                 {product.stock <= 0 ? (
                   <Link
                     to={"/"}
-                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#10455F] px-8 py-3 text-base font-medium text-white hover:bg-[#27566d] focus:outline-none focus:ring-2 focus:ring-[#5a8faa] focus:ring-offset-2"
                   >
                     Coming Soon... Check Other Products
                   </Link>
@@ -343,7 +343,7 @@ export default function AdminProductDetail() {
                       onClick={(e) => handleBuyNow(e)}
                       type="submit"
                       disabled={cartStatus === "loading"}
-                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-xs font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#10455F] px-8 py-3 text-xs font-medium text-white hover:bg-[#27566d] focus:outline-none focus:ring-2 focus:ring-[#5a8faa] focus:ring-offset-2"
                     >
                       Buy Now
                     </button>
@@ -351,7 +351,7 @@ export default function AdminProductDetail() {
                       onClick={(e) => handleAddToCart(e)}
                       type="submit"
                       disabled={cartStatus === "loading"}
-                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-xs font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#10455F] px-8 py-3 text-xs font-medium text-white hover:bg-[#27566d] focus:outline-none focus:ring-2 focus:ring-[#5a8faa] focus:ring-offset-2"
                     >
                       Add to Cart
                     </button>

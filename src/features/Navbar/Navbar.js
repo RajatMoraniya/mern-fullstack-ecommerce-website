@@ -33,14 +33,14 @@ function Navbar({ children }) {
     <>
       {userInfo && (
         <div className="min-h-full">
-          <Disclosure as="nav" className="bg-gray-800">
+          <Disclosure as="nav" className="bg-[#10455f]">
             {({ open }) => (
               <>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                   <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 hover:scale-110">
-                        <Link to="/">
+                        <Link to="/home">
                           <img
                             loading="lazy"
                             className="h-8 w-8"
@@ -59,7 +59,7 @@ function Navbar({ children }) {
                                 className={classNames(
                                   item.current
                                     ? "bg-gray-900 text-white"
-                                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                    : "text-gray-300 hover:bg-[#2b3f48] hover:text-white",
                                   "rounded-md px-3 py-2 text-sm font-medium"
                                 )}
                                 aria-current={item.current ? "page" : undefined}
@@ -76,7 +76,7 @@ function Navbar({ children }) {
                         <Link to="/carts">
                           <button
                             type="button"
-                            className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                            className="rounded-full bg-[#10455f] p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                           >
                             <span className="sr-only">View notifications</span>
                             <ShoppingCartIcon
@@ -94,7 +94,7 @@ function Navbar({ children }) {
                         {/* Profile dropdown */}
                         <Menu as="div" className="relative ml-3">
                           <div>
-                            <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            <Menu.Button className="flex max-w-xs items-center rounded-full bg-[#10455f] text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                               <span className="sr-only">Open user menu</span>
                               <img
                                 loading="lazy"
@@ -136,7 +136,7 @@ function Navbar({ children }) {
                     </div>
                     <div className="-mr-2 flex md:hidden">
                       {/* Mobile menu button */}
-                      <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-[#10455f] p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">Open main menu</span>
                         {open ? (
                           <XMarkIcon
@@ -195,7 +195,7 @@ function Navbar({ children }) {
                       <Link to="/carts">
                         <button
                           type="button"
-                          className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                          className="ml-auto flex-shrink-0 rounded-full bg-[#10455f] p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                         >
                           <ShoppingCartIcon
                             className="h-6 w-6"

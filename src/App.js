@@ -33,6 +33,7 @@ import AlertTemplate from "react-alert-template-basic";
 import StripeCheckout from "./pages/StripeCheckout";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import { Helmet } from "react-helmet";
+import Landing from "./pages/Landing";
 
 const options = {
   timeout: 5000,
@@ -42,6 +43,10 @@ const options = {
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Landing />,
+  },
+  {
+    path: "/home",
     element: (
       <Protected>
         <Home />
@@ -199,13 +204,19 @@ function App() {
       <Helmet>
         {/* Basic meta tags */}
         <title>Nimart - अपनों की दुकान</title>
-        <meta name="description" content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more. Enjoy secure online shopping, fast delivery, and exceptional customer service. Find everything you need in one place." />
+        <meta
+          name="description"
+          content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more. Enjoy secure online shopping, fast delivery, and exceptional customer service. Find everything you need in one place."
+        />
         <meta name="author" content="Rajat Moraniya" />
         <meta name="robots" content="index, follow" />
 
         {/* Open Graph meta tags (for social sharing) */}
         <meta property="og:title" content="Nimart - अपनों की दुकान" />
-        <meta property="og:description" content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more." />
+        <meta
+          property="og:description"
+          content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more."
+        />
         {/* <meta property="og:image" content={logo} /> */}
         <meta property="og:url" content="https://www.nimart.com" />
         <meta property="og:type" content="website" />
@@ -213,12 +224,14 @@ function App() {
         {/* Twitter Card meta tags (for Twitter sharing) */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Nimart - अपनों की दुकान" />
-        <meta name="twitter:description" content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more." />
+        <meta
+          name="twitter:description"
+          content="Discover a world of quality products at Nimart. Shop the latest trends in fashion, electronics, home decor, and more."
+        />
         {/* <meta name="twitter:image" content={logo} /> */}
 
         {/* Canonical URL */}
         <link rel="canonical" href="https://www.nimart.com" />
-
 
         {/* Other meta tags, stylesheets, and scripts go here */}
       </Helmet>
